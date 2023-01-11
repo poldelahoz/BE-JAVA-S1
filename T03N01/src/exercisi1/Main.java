@@ -9,8 +9,9 @@ public class Main {
 	private static ArrayList<Month> monthList;
 
 	public static void main(String[] args) {
-		// Omplim la llista
+		// Omplim la llista dades
 		fillMonthList();
+		
 		// Afegim Agost a la seva posició y ho comprobem mostrant el ArrayList per pantalla recorrent amb un for 
 		monthList.add(7, new Month("Agost"));
 		System.out.println("Llistat de mesos després d'afegir Agost: ");
@@ -19,17 +20,20 @@ public class Main {
 		}
 		System.out.println("--------------------------------");
 		
-		//Convertim el ArrayList a HashSet i el mostrem per pantalla amb un forEach
-		HashSet<Month> hashSet = new HashSet<>();
+		// Convertim el ArrayList a HashSet i el mostrem per pantalla amb un forEach
+		HashSet<Month> hashSet = new HashSet<Month>();
 		hashSet.addAll(monthList);
 		System.out.println("Llistat de mesos en un HashSet: ");
 		hashSet.forEach(month -> System.out.println(month.getName()));
 		System.out.println("--------------------------------");
 		
-		// Comprobem que no permet afegir duplicats i el mostrem per pantalla recorrent-lo amb un iterador
-		hashSet.add(new Month("Febrer"));
+		// Comprobem que no permet afegir duplicats: add() retorna false si no l'ha pogut afegir i true en cas contrari
+		System.out.println("Afegim un mes duplicat.\nResultat: " + hashSet.add(new Month("Febrer")));
+		System.out.println("--------------------------------");
+		
+		// Mostrem per pantalla el HashSet recorrent-lo amb un iterador
 		Iterator<Month> iterator = hashSet.iterator();
-		System.out.println("Llistat de mesos en un HashSet comprobant que no accepta duplicats: ");
+		System.out.println("Llistat de mesos en un HashSet habent afegit un altre Febrer comprobant que no accepta duplicats: ");
 		while(iterator.hasNext()) {
 			System.out.println(iterator.next().getName());
 		}
@@ -50,3 +54,5 @@ public class Main {
 		monthList.add(new Month("Desembre"));
 	}
 }
+
+
