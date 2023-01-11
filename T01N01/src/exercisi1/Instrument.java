@@ -1,24 +1,6 @@
 package exercisi1;
 
-public class GrupDeMusica {
-	
-	public static InstrumentVent iVent;
-	public static InstrumentCorda iCorda;
-	public static InstrumentPercussio iPercussio;
-
-	public GrupDeMusica() {
-	}
-	
-	public static void main(String[] args) {
-		iVent = new InstrumentVent("Flauta", 9.00);
-		iCorda = new InstrumentCorda("Guitarra", 46.00);
-		iPercussio = new InstrumentPercussio("Tambor", 27.00);
-		iVent.Tocar();
-		iCorda = new InstrumentCorda("Violí", 40.00);
-	}
-}
-
-abstract class Instrument {
+public abstract class Instrument {
 	
 	private String nom;
 	private Double preu;
