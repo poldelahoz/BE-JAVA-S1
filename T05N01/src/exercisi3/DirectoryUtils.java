@@ -1,5 +1,7 @@
-package exercisi2;
+package exercisi3;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
 import java.nio.file.FileVisitResult;
@@ -9,35 +11,36 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static java.nio.file.FileVisitResult.*;
 
 public class DirectoryUtils {
 	
-	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-	
-	public static List<String> listContentOrdered(String path) {
-		try (Stream<Path> stream = Files.list(Paths.get(path))) {
+	public static List<String> listContentOrdered(String dir) {
+		try (Stream<Path> stream = Files.list(Paths.get(dir))) {
 	        return stream
 	          .map(Path::getFileName)
 	          .map(Path::toString)
 	          .sorted()
 	          .collect(Collectors.toList());
 	    }catch(IOException e) {
-	    	System.out.println("Path " + path + "does not exist.\n" + e.getMessage());
+	    	System.out.println("Path " + dir + "does not exist.\n" + e.getMessage());
 	    	return null;
 	    }
 	}
 	
-	public static void listAllSubdirectoriesAndFiles(String path){
+	public static void listAllSubdirectoriesAndFiles(String dir){
 		try {
-			Path startingDir = Paths.get(path);
+			Path startingDir = Paths.get(dir);
 			PrintFiles printFiles = new PrintFiles();
 			EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
 			Files.walkFileTree(startingDir, opts, Integer.MAX_VALUE, printFiles);
@@ -45,6 +48,7 @@ public class DirectoryUtils {
 			e.printStackTrace();
 		}
 	}
+	
 }
 
 class PrintFiles implements FileVisitor<Path> {
@@ -60,41 +64,58 @@ class PrintFiles implements FileVisitor<Path> {
         return localDateTime.format(DATE_FORMATTER);
     }
 	
+	private static void saveToFile(String data){
+		try {
+			String dateTime = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+			String fullSavePath = Main.savePath + "DirectoryTree_" + dateTime + ".txt";
+			File file = new File(fullSavePath);
+			file.createNewFile();
+			FileWriter fileWriter = new FileWriter(fullSavePath, true);
+			fileWriter.write(data + System.lineSeparator());
+			fileWriter.flush();
+			fileWriter.close();
+		}catch(IOException e) {
+			System.out.println("An error occurred writing the file.\n" + e.getMessage());
+		}
+	}
+	
 	@Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
+		String data = "";
 		Integer level = file.getNameCount();
 		for(int i = 1; i < level; i++) {
 			if (i+1 == level) {
-				System.out.print("-->");
+				data += "-->";
 			}else {
-				System.out.print("   ");
+				data += "   ";
 			}
 		}
 	    if (attr.isRegularFile()) {
-	        System.out.format("%s (F) | ", file.getFileName());
-	    } else if (attr.isDirectory()) {
-	        System.out.format("%s (D) | ", file.getFileName());
+	    	data += file.getFileName() + " (F) | ";
 	    } else {
-	        System.out.format("Other: %s ", file);
+	    	data += file + "Other: %s ";
 	    }
-	    System.out.println("(" + formatDateTime(attr.lastModifiedTime()) + ")");
+	    data += "(" + formatDateTime(attr.lastModifiedTime()) + ")";
+	    saveToFile(data);
 	    return CONTINUE;
 	}
 	
 	@Override
 	public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
 		try{
+			String data = "";
 			Integer level = dir.getNameCount();
 			for(int i = 1; i < level; i++) {
 				if (i+1 == level) {
-					System.out.print("-->");
+					data += "-->";
 				}else {
-					System.out.print("   ");
+					data += "   ";
 				}
 			}
 			BasicFileAttributes attr = Files.readAttributes(dir, BasicFileAttributes.class);
-			System.out.format("%s (D) | ", dir.getFileName());
-		    System.out.println("(" + formatDateTime(attr.lastModifiedTime()) + ")");
+			data += dir.getFileName() + " (D) | ";
+			data += "(" + formatDateTime(attr.lastModifiedTime()) + ")";
+			saveToFile(data);
 		    return CONTINUE;
 		}catch(IOException e) {
 			e.printStackTrace();

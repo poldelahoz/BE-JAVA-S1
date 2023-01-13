@@ -1,8 +1,10 @@
-package exercisi2;
+package exercisi3;
 
 import java.util.Scanner;
 
 public class Main {
+	
+	public static final String savePath = "src/exercisi3/resources/";
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -10,8 +12,8 @@ public class Main {
 		String dir = scanner.nextLine();
 		scanner.close();
 		System.out.println();
-		System.out.println("Arbre complet del directori " + dir + ":");
 		DirectoryUtils.listAllSubdirectoriesAndFiles(dir);
+		System.out.println("Arbre complet del directori guardat a " + savePath);
 	}
 
 }
