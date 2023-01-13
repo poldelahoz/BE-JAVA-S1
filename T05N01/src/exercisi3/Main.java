@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	
-	public static final String savePath = "src/exercisi3/resources/";
+	public static final String savePath = "src/exercisi3/results/";
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
