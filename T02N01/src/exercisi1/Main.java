@@ -23,9 +23,11 @@ public class Main {
 			
 			// Generem i capturem una excepció del tipus ArrayIndexOutOfBoundsException
 			System.out.println("Generem i capturem una excepció del tipus ArrayIndexOutOfBoundsException:");
-			venda = new Venda(new ArrayList<Producte>());
-			venda.calcularTotal();
+			String[] array = {"1","2","3","4"};   
+			System.err.println(array[5]);
 		}catch(VendaBuidaException e) {
+			System.err.println("VendaBuidaException: " + e.getMessage());
+		}catch(ArrayIndexOutOfBoundsException e) {
 			System.err.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
 		}
 	}
