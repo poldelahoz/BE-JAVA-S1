@@ -19,9 +19,9 @@ public class Main {
 		System.out.println("Llista 1: " + list1);
 		System.out.println("Llista 2 buida: " + list2);
 		
-		ListIterator<Integer> listIterator = list1.listIterator();
-		while(listIterator.hasNext()) {
-			list2.add(listIterator.next());
+		ListIterator<Integer> listIterator = list1.listIterator(list1.size());
+		while(listIterator.hasPrevious()) {
+			list2.add(listIterator.previous());
 		}
 		
 		System.out.println("Llista 2 omplerta: " + list2);

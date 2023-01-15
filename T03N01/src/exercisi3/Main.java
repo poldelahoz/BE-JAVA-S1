@@ -15,13 +15,12 @@ public class Main {
 		System.out.println("Introdueix el teu nom d'usuari/ària:");
 		String username = scanner.nextLine();
 		
-		// Llegim fitxer dels paisos
 		FileUtilities.readCountriesFile();
 		
 		Integer score = 0;
 		Random generator = new Random();
 		String askedCountries = "";
-		for(int i = 0; i < 2; i++) {
+		for(int i = 0; i < 10; i++) {
 			Object[] countriesArray = countries.values().toArray();
 			int randomNumber;
 			

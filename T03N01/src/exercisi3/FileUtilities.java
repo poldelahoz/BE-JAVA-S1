@@ -10,17 +10,18 @@ public class FileUtilities {
 	
 	public static void readCountriesFile(){
 		try {
-			File countriesFile = new File(countriesFilePath);
-			Scanner fileReader = new Scanner(countriesFile);
-			while (fileReader.hasNextLine()) {
-				String data = fileReader.nextLine();
-				String country = data.split(" ")[0].replace("_", " ");
-				String capital = data.split(" ")[1].replace("_", " ");
+			FileReader fileReader = new FileReader(countriesFilePath);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line = bufferedReader.readLine();
+			while(line!=null){
+				String country = line.split(" ")[0].replace("_", " ");
+				String capital = line.split(" ")[1].replace("_", " ");
 				Main.countries.put(capital, country);
+				line = bufferedReader.readLine();
 			}
-			fileReader.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("No existeix el fitxer " + countriesFilePath);
+			bufferedReader.close();
+		}catch (IOException e) {
+			System.out.println("An error occurred.\n" + e.getMessage());
 		}
 	}
 	
@@ -29,9 +30,10 @@ public class FileUtilities {
 			File scoresFile = new File(scoresFilePath);
 			scoresFile.createNewFile();
 			FileWriter fileWriter = new FileWriter(scoresFilePath, true);
-			fileWriter.write(username + ";" + score + System.lineSeparator());
-			fileWriter.flush();
-			fileWriter.close();
+			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+			bufferedWriter.write(username + ";" + score);
+			bufferedWriter.newLine();
+			bufferedWriter.close();
 		}catch(IOException e) {
 			System.out.println("An error occurred.\n" + e.getMessage());
 		}
