@@ -1,6 +1,14 @@
 package exercisis;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -11,14 +19,15 @@ public class Main {
             "2- Exercisi 2: Mostrar l'arbre complet d'un directori.",
             "3- Exercisi 3: Guardar l'arbre complet d'un directori a un fitxer TXT",
             "4- Exercisi 4: Llegir un fitxer TXT i mostrar el seu contingut",
-            "5- Exercisi 5: ",
+            "5- Exercisi 5: Desserialitzar un objecte en un fitxer, tornar-lo a serialitzar i mostrar-lo per pantalla",
             "6- Sortir",
 	};
 	private static Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
-		System.out.println(savePath);
+		Files.createDirectories(Paths.get(savePath));
+		
         int option;
         boolean exit = false;
 		while (!exit){
@@ -31,7 +40,7 @@ public class Main {
                     case 3: option3(); break;
                     case 4: option4(); break;
                     case 5: option5(); break;
-                    case 6: exit = true; break;
+                    case 6: System.out.println("Fins aviat!"); exit = true; break;
                     default: System.out.println("Només números entre 1 i " + options.length);
                 }
             }
@@ -85,6 +94,37 @@ public class Main {
 	}
 	
 	private static void option5() {
-		String dir;
+		try {
+			
+			System.out.println("Creem una nova instància d'un objecte anomenat Persona i el mostrem per pantalla: ");
+			Persona persona = new Persona("Pol de la Hoz", 29, "Masculí");
+			System.out.println(persona.toString());
+			
+			System.out.println("Serialitzem l'objecte i l'escribim a un fitxer.");
+			String myObjectFilePath = savePath + "myObject.ser";
+			File myObjectFile = new File(myObjectFilePath);
+			myObjectFile.createNewFile();
+			FileOutputStream fileOutputStream;
+			fileOutputStream = new FileOutputStream(myObjectFile);
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			objectOutputStream.writeObject(persona);
+			objectOutputStream.close();
+			fileOutputStream.close();
+			
+			System.out.println("Desserialitzem l'objecte guardat al fitxer i el mostrem per pantalla per demostrar que és igual: ");
+			FileInputStream fileInputStream = new FileInputStream(myObjectFile);
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			
+			Persona persona2 = (Persona) objectInputStream.readObject();
+			System.out.println(persona2.toString());
+			objectInputStream.close();
+			fileInputStream.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Fitxer no trobat: " + e.getMessage());
+		} catch (IOException e) {
+			System.out.println("Error initializing stream: " + e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println("La classe del objecte que s0ha intentat deserialitzar no existeix: " + e.getMessage());
+		}
 	}
 }
