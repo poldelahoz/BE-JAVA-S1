@@ -20,6 +20,11 @@ public class Main {
 			venda = new Venda(llistaProductesDemo);
 			venda.calcularTotal();
 			System.out.println("Preu total de la venda: " + df.format(venda.getPreuTotalVenda()));
+			
+			// Generem i capturem una excepció del tipus ArrayIndexOutOfBoundsException
+			System.out.println("Generem i capturem una excepció del tipus ArrayIndexOutOfBoundsException:");
+			venda = new Venda(new ArrayList<Producte>());
+			venda.calcularTotal();
 		}catch(VendaBuidaException e) {
 			System.err.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
 		}
