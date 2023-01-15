@@ -6,9 +6,9 @@ public class Cotxe {
 	private static String model; // Inicialitzat amb el constructor o amb el setter
 	private final String potencia; // Podem inicialitzar-lo al constructor perquè no és static
 	
-	public Cotxe(String model) {
+	public Cotxe(String model, String potencia) {
 		Cotxe.model = model;
-		potencia = "184 cv";
+		this.potencia = potencia;
 	}
 	
 	public static String getMarca() {
