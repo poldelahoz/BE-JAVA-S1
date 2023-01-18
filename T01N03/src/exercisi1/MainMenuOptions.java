@@ -31,7 +31,7 @@ public class MainMenuOptions {
 		String DniNom = Main.scanner.nextLine();
 		Redactor redactor = Main.redaccio.getRedactor(DniNom);
 		if (redactor == null) {
-			System.out.println("El redactor amb DNI/Nom \" + DniNom + \" no existeix en aquesta redacció.");
+			System.out.println("El redactor amb DNI/Nom " + DniNom + " no existeix en aquesta redacció.");
 		}else {
 			System.out.println();
 			Main.redaccio.borrarRedactor(redactor);
@@ -44,7 +44,7 @@ public class MainMenuOptions {
 		String DniNom = Main.scanner.nextLine();
 		Redactor redactor = Main.redaccio.getRedactor(DniNom);
 		if (redactor == null) {
-			System.out.println("El redactor amb DNI/Nom \" + DniNom + \" no existeix en aquesta redacció.");
+			System.out.println("El redactor amb DNI/Nom " + DniNom + " no existeix en aquesta redacció.");
 		}else {
 			System.out.print("Informació de la notícia");
 			System.out.print("Titular: ");

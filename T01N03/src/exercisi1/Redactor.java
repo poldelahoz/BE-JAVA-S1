@@ -12,6 +12,10 @@ public class Redactor{
 		this.setNom(nom);
 		this.DNI = DNI;
 	}
+	
+	public List<Noticia> getNoticies() {
+		return noticies;
+	}
 
 	public String getNom() {
 		return nom;
