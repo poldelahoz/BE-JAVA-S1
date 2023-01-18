@@ -49,6 +49,7 @@ public class MainMenuOptions {
 			System.out.print("Informació de la notícia");
 			System.out.print("Titular: ");
 			Noticia noticia = new Noticia(Main.scanner.nextLine());
+			redactor.afegirNoticia(noticia);
 		}
 	}
 	

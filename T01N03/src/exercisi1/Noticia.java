@@ -1,6 +1,6 @@
 package exercisi1;
 
-public abstract class Noticia {
+public class Noticia{
 	
 	private String titular;
 	private String text;
@@ -46,10 +46,4 @@ public abstract class Noticia {
 	public void setPreu(double preu) {
 		this.preu = preu;
 	}
-	
-	abstract void calcularPreuNoticia();
-	
-	abstract void calcularPuntuacio();
-	
-	abstract void demanarInformacio();;
 }

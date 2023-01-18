@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class NoticiaMotociclisme extends Noticia{
+public class NoticiaMotociclisme extends Noticia implements NoticiaUtils{
 	
 	private String equip;
 	
