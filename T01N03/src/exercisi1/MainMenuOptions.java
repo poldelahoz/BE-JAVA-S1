@@ -1,6 +1,8 @@
 package exercisi1;
 
 import java.text.NumberFormat;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -75,6 +77,16 @@ public class MainMenuOptions {
 	}
 	
 	public static void option5() {
+		List<Redactor> redactors = Main.redaccio.getRedactors();
+		Redactor redactor;
+		ListIterator<Redactor> iterator = redactors.listIterator();
+		while(iterator.hasNext()) {
+			redactor = iterator.next();
+			System.out.println("Redactor " + redactor.getNom() + " amb DNI " + redactor.getDNI());
+			System.out.println("Notícies:");
+			redactor.getNoticies().forEach(noticia -> System.out.println("Titular: " + noticia.getTitular() + "\nText: " + noticia.getText()));
+			System.out.println();
+		}
 		
 	}
 	
