@@ -67,7 +67,6 @@ public class Main {
 		System.out.println();
 		System.out.println("Contingut ordenat alfabéticament del directori " + dir + ":");
 		DirectoryUtils.printContentOrdered(dir);
-		
 	}
 	
 	private static void option2() {
