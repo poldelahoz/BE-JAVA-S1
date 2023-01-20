@@ -2,10 +2,10 @@ package exercisi2;
 
 public class GenericMethods {
 	
-	public GenericMethods(Object object1, Object object2, Object object3) {
-		System.out.println("Objecte 1: " + object1
-		+ "\nObjecte 2: " + object2
-		+ "\nObjecte 3: " + object3);
+	public <T> GenericMethods(T t1, T t2, T t3) {
+		System.out.println("Paràmetre 1: " + t1
+		+ "\nParàmetre 2: " + t2
+		+ "\nParàmetre 3: " + t3);
 	}
 	
 }
