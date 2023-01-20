@@ -41,6 +41,6 @@ public class Persona implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Nom:" + name + "\nEdat: " + age + "\nGÃ¨nere: " + gender;
+		return "Nom:" + name + "\nEdat: " + age + "\nGènere: " + gender;
 	}
 }

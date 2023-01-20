@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Main {
 	
 	public static final String savePath = System.getProperty("user.dir") + "\\results\\";
-	private static final String[] options = {"1- Exercisi 1: Llistar alfabÃ©ticament el contingut d'un directori",
+	private static final String[] options = {"1- Exercisi 1: Llistar alfabèticament el contingut d'un directori",
             "2- Exercisi 2: Mostrar l'arbre complet d'un directori.",
             "3- Exercisi 3: Guardar l'arbre complet d'un directori a un fitxer TXT",
             "4- Exercisi 4: Llegir un fitxer TXT i mostrar el seu contingut",
@@ -41,11 +41,11 @@ public class Main {
                     case 4: option4(); break;
                     case 5: option5(); break;
                     case 6: System.out.println("Fins aviat!"); exit = true; break;
-                    default: System.out.println("NomÃ©s nÃºmeros entre 1 i " + options.length);
+                    default: System.out.println("Només números entre 1 i " + options.length);
                 }
             }
             catch (NoSuchElementException ex){
-                System.out.println("Has d'introduir un nÃºmero");
+                System.out.println("Has d'introduir un número");
                 scanner.next();
             }
         }
@@ -58,16 +58,15 @@ public class Main {
             System.out.println(option);
         }
 		System.out.println();
-        System.out.print("Tria una opciÃ³: ");
+        System.out.print("Tria una opció: ");
 	}
 	
 	private static void option1() {
 		System.out.print("Introdueix un directori complet: ");
 		String dir = scanner.nextLine();
 		System.out.println();
-		System.out.println("Contingut ordenat alfabÃ©ticament del directori " + dir + ":");
+		System.out.println("Contingut ordenat alfabèticament del directori " + dir + ":");
 		DirectoryUtils.printContentOrdered(dir);
-		
 	}
 	
 	private static void option2() {
@@ -96,8 +95,8 @@ public class Main {
 	private static void option5() {
 		try {
 			
-			System.out.println("Creem una nova instÃ ncia d'un objecte anomenat Persona i el mostrem per pantalla: ");
-			Persona persona = new Persona("Pol de la Hoz", 29, "MasculÃ­");
+			System.out.println("Creem una nova instància d'un objecte anomenat Persona i el mostrem per pantalla: ");
+			Persona persona = new Persona("Pol de la Hoz", 29, "Masculí");
 			System.out.println(persona.toString());
 			
 			System.out.println("Serialitzem l'objecte i l'escribim a un fitxer.");
@@ -111,7 +110,7 @@ public class Main {
 			objectOutputStream.close();
 			fileOutputStream.close();
 			
-			System.out.println("Desserialitzem l'objecte guardat al fitxer i el mostrem per pantalla per demostrar que Ã©s igual: ");
+			System.out.println("Desserialitzem l'objecte guardat al fitxer i el mostrem per pantalla per demostrar que és igual: ");
 			FileInputStream fileInputStream = new FileInputStream(myObjectFile);
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			
@@ -124,7 +123,7 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("Error initializing stream: " + e.getMessage());
 		} catch (ClassNotFoundException e) {
-			System.out.println("La classe del objecte que s0ha intentat deserialitzar no existeix: " + e.getMessage());
+			System.out.println("La classe del objecte que s'ha intentat deserialitzar no existeix: " + e.getMessage());
 		}
 	}
 }
