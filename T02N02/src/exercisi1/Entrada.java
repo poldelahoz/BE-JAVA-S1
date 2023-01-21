@@ -10,7 +10,9 @@ public class Entrada {
 	public static byte llegirByte(String missatge) {
 		try {
 			System.out.println(missatge);
-			return scanner.nextByte();
+			byte b = scanner.nextByte();
+			scanner.nextLine();
+			return b;
 		}catch(InputMismatchException e) {
 			System.out.println("Error de format.");
 			scanner.next();
@@ -21,7 +23,9 @@ public class Entrada {
 	public static int llegirInt(String missatge) {
 		try {
 			System.out.println(missatge);
-			return scanner.nextInt();
+			int i = scanner.nextInt();
+			scanner.nextLine();
+			return i;
 		}catch(InputMismatchException e) {
 			System.out.println("Error de format.");
 			scanner.next();
@@ -32,7 +36,9 @@ public class Entrada {
 	public static float llegirFloat(String missatge) {
 		try {
 			System.out.println(missatge);
-			return scanner.nextFloat();
+			float f = scanner.nextFloat();
+			scanner.nextLine();
+			return f;
 		}catch(InputMismatchException e) {
 			System.out.println("Error de format.");
 			scanner.next();
@@ -43,7 +49,9 @@ public class Entrada {
 	public static double llegirDouble(String missatge) {
 		try {
 			System.out.println(missatge);
-			return scanner.nextDouble();
+			double d = scanner.nextDouble();
+			scanner.nextLine();
+			return d;
 		}catch(InputMismatchException e) {
 			System.out.println("Error de format.");
 			scanner.next();
@@ -54,13 +62,12 @@ public class Entrada {
 	public static char llegirChar(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.next();
+			String out = scanner.nextLine();
 			if (out.length() == 1)
 				return out.charAt(0);
 			else
 				throw new Exception();
 		}catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("Error de format.");
 			return llegirChar(missatge);
 		}
@@ -69,11 +76,10 @@ public class Entrada {
 	public static String llegirString(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.next();
+			String out = scanner.nextLine();
 			return out;
 		}catch(Exception e) {
 			System.out.println("Error de format.");
-			//scanner.next();
 			return llegirString(missatge);
 		}
 	}
@@ -81,7 +87,7 @@ public class Entrada {
 	public static boolean llegirSiNo(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.next();
+			String out = scanner.nextLine();
 			char c;
 			if (out.length() == 1)
 				c = out.charAt(0);
