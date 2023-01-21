@@ -30,18 +30,6 @@ public class Entrada {
 	}
 	
 	public static float llegirFloat(String missatge) {
-		/*boolean valid = false;
-		float f = 0;
-		do {
-			System.out.println(missatge);
-			try {
-				return scanner.nextFloat();
-			}catch(InputMismatchException e) {
-				System.out.println("Error de format.");
-				scanner.next();
-			}
-		}while(!valid);
-		return f;*/
 		try {
 			System.out.println(missatge);
 			return scanner.nextFloat();
@@ -66,11 +54,13 @@ public class Entrada {
 	public static char llegirChar(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.nextLine();
+			String out = scanner.next();
 			if (out.length() == 1)
 				return out.charAt(0);
-			throw new Exception();
+			else
+				throw new Exception();
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Error de format.");
 			return llegirChar(missatge);
 		}
@@ -79,11 +69,11 @@ public class Entrada {
 	public static String llegirString(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.nextLine();
+			String out = scanner.next();
 			return out;
 		}catch(Exception e) {
 			System.out.println("Error de format.");
-			scanner.next();
+			//scanner.next();
 			return llegirString(missatge);
 		}
 	}
@@ -91,7 +81,7 @@ public class Entrada {
 	public static boolean llegirSiNo(String missatge) {
 		try {
 			System.out.println(missatge);
-			String out = scanner.nextLine();
+			String out = scanner.next();
 			char c;
 			if (out.length() == 1)
 				c = out.charAt(0);

@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		/*byte b = Entrada.llegirByte("Introdueix un byte: ");
+		byte b = Entrada.llegirByte("Introdueix un byte: ");
 		System.out.println("Byte: " + b);
 		
 		int i = Entrada.llegirInt("Introdueix un integer: ");
@@ -20,7 +20,7 @@ public class Main {
 		System.out.println("Char: " + c);
 		
 		String s = Entrada.llegirString("Introdueix un string: ");
-		System.out.println("String: " + s);*/
+		System.out.println("String: " + s);		
 		
 		boolean bool = Entrada.llegirSiNo("Introdueix S/N: ");
 		System.out.println("Boolean: " + bool);
