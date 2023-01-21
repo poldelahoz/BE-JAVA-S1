@@ -3,6 +3,12 @@ package exercisi1;
 import java.time.temporal.ValueRange;
 import java.util.List;
 
+import exercisi1.Excepcions.ExcepcioButacaLliure;
+import exercisi1.Excepcions.ExcepcioButacaOcupada;
+import exercisi1.Excepcions.ExcepcioFilaIncorrecta;
+import exercisi1.Excepcions.ExcepcioNomPersonaIncorrecte;
+import exercisi1.Excepcions.ExcepcioSeientIncorrecte;
+
 public class Cine {
 	
 	private Integer nFiles;

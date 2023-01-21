@@ -1,4 +1,4 @@
-package exercisi1;
+package exercisi1.Excepcions;
 
 public class ExcepcioButacaLliure extends Exception{
 

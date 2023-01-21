@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import exercisi1.Excepcions.ExcepcioButacaLliure;
+import exercisi1.Excepcions.ExcepcioButacaOcupada;
+
 public class GestioButaques {
 	
 	private final ArrayList<Butaca> butaques;
