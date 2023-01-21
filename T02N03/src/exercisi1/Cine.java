@@ -25,7 +25,7 @@ public class Cine {
                 case 3: reservarButaca(); break;
                 case 4: anularReserva(); break;
                 case 5: anularReservaPersona(); break;
-                case 8: System.out.println("Fins aviat!"); exit = true; break;
+                case 0: System.out.println("Fins aviat!"); exit = true; break;
                 default: System.out.println("Només números entre 0 i 5");
             }
 		}
@@ -77,18 +77,16 @@ public class Cine {
 			nSeient = introduirSeient();
 			persona = introduirPersona();
 			gestioButaques.afegirButaca(new Butaca(nFila, nSeient, persona));
+			System.out.println();
+			System.out.println("Butaca reservada.");
 		} catch (ExcepcioFilaIncorrecta e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ExcepcioSeientIncorrecte e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ExcepcioNomPersonaIncorrecte e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ExcepcioButacaOcupada e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -99,15 +97,14 @@ public class Cine {
 			nFila = introduirFila();
 			nSeient = introduirSeient();
 			gestioButaques.eliminarButaca(nFila, nSeient);
+			System.out.println();
+			System.out.println("Reserva anulada.");
 		} catch (ExcepcioFilaIncorrecta e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ExcepcioSeientIncorrecte e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ExcepcioButacaLliure e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -124,12 +121,12 @@ public class Cine {
 						e.printStackTrace();
 					}
 				});
+				System.out.println("Reserva/es anulada/es.");
 			}else {
 				System.out.println("Aquesta persona no té cap butaca reservada.");
 			}
 		} catch (ExcepcioNomPersonaIncorrecte e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -141,6 +138,7 @@ public class Cine {
 			else	
 				throw new ExcepcioNomPersonaIncorrecte("Nom de la persona incorrecte.");
 		}catch(ExcepcioNomPersonaIncorrecte e) {
+			System.out.println(e.getMessage());
 			return introduirPersona();
 		}
 	}
@@ -159,6 +157,7 @@ public class Cine {
 			else	
 				throw new ExcepcioFilaIncorrecta("Nombre de fila incorrecta. El cine només té " + nFiles + " files.");
 		}catch(ExcepcioFilaIncorrecta e) {
+			System.out.println(e.getMessage());
 			return introduirFila();
 		}
 	}
@@ -172,6 +171,7 @@ public class Cine {
 			else	
 				throw new ExcepcioSeientIncorrecte("Nombre de seient incorrecte. El cine només té " + nSeients + " seients per fila.");
 		}catch(ExcepcioSeientIncorrecte e) {
+			System.out.println(e.getMessage());
 			return introduirSeient();
 		}
 	}

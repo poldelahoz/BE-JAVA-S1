@@ -1,6 +1,8 @@
 package exercisi1;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,9 +24,13 @@ public class GestioButaques {
 	
 	public void afegirButaca(Butaca butaca) throws ExcepcioButacaOcupada {
 		int i = cercarButaca(butaca.getnFila(), butaca.getnSeient());
-		if (i == -1)
+		if (i == -1) {
 			butaques.add(butaca);
-		else
+			Comparator<Butaca> compareByFilaSeient = Comparator
+                    									.comparing(Butaca::getnFila)
+                    									.thenComparing(Butaca::getnSeient);
+			Collections.sort(butaques, compareByFilaSeient);
+		}else
 			throw new ExcepcioButacaOcupada("Aquesta butaca ja està ocupada.");
 	}
 	
