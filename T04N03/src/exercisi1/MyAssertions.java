@@ -14,8 +14,13 @@ public class MyAssertions {
 	@Test
     void ensureEqual( ) {
 		Alumne alumne1 = new Alumne("Harry Potter", 1, Casa.Gryffindor);
-		Alumne alumne2 = new Alumne("Harry Potter", 1, Casa.Gryffindor);
-		assertThat(alumne1).isEqualTo(alumne2);
+		Alumne alumne2 = new Alumne("Harry Potter", 2, Casa.Gryffindor);
+		assertThat(alumne1)
+			.as("L'alumne \"%s\" i l'alumne \"%s\" NO són iguals.", alumne1.getNom(), alumne2.getNom())
+			.usingRecursiveComparison()
+			.ignoringFields("hashCode")
+			.isEqualTo(alumne2);
+		
     }
     
 	@DisplayName("Dos alumnes son diferents")
@@ -23,7 +28,11 @@ public class MyAssertions {
     void ensureNotEqual( ) {
 		Alumne alumne1 = new Alumne("Harry Potter", 1, Casa.Gryffindor);
 		Alumne alumne2 = new Alumne("Draco Malfoy", 1, Casa.Slytherin);
-		assertThat(alumne1).isNotEqualTo(alumne2);
+		assertThat(alumne1)
+			.as("L'alumne \"%s\" i l'alumne \"%s\" NO són diferents.", alumne1.getNom(), alumne2.getNom())
+			.usingRecursiveComparison()
+			.ignoringFields("hashCode")
+			.isNotEqualTo(alumne2);
     }
 	
 	
