@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class NoticiaTenis extends Noticia implements NoticiaUtils{
+public class NoticiaTenis extends Noticia{
 	
 	private String competicio;
 	private String tenista;
@@ -29,27 +29,37 @@ public class NoticiaTenis extends Noticia implements NoticiaUtils{
 	}
 	
 	@Override
-	public void calcularPreuNoticia() {
+	public double calcularPreuNoticia() {
 		double preu = 150;
 		if (tenista.equals("Federer") || tenista.equals("Nadal") || tenista.equals("Djokovic"))
 			preu += 100;
-		this.setPreu(preu);
+		return preu;
 	}
 	
 	@Override
-	public void calcularPuntuacio() {
+	public Integer calcularPuntuacio() {
 		Integer puntuacio = 4;
 		if (tenista.equals("Federer") || tenista.equals("Nadal") || tenista.equals("Djokovic"))
 			puntuacio += 3;
-		this.setPuntuacio(puntuacio);
+		return puntuacio;
 	}
 	
 	@Override
 	public void demanarInformacio() {
-		System.out.print("Informació de la notícia");
+		System.out.println("Introdueix la informació de la notícia:");
+		System.out.print("Titular: ");
+		this.setTitular(Main.scanner.nextLine());
 		System.out.print("Competició: ");
 		this.setCompeticio(Main.scanner.nextLine());
 		System.out.print("Tenista: ");
 		this.setTenista(Main.scanner.nextLine());
+	}
+	
+	@Override
+	public void mostrarInformacio() {
+		System.out.print("Titular: " + this.getTitular() + " | ");
+		System.out.print("Text: " + this.getText() + " | ");
+		System.out.print("Competició: " + this.getCompeticio() + " | ");
+		System.out.print("Tenista: " + this.getTenista());
 	}
 }

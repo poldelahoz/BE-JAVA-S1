@@ -1,11 +1,9 @@
 package exercisi1;
 
-public class Noticia{
+public abstract class Noticia{
 	
 	private String titular;
 	private String text;
-	private Integer puntuacio;
-	private double preu;
 	
 	public Noticia() {
 	}
@@ -32,18 +30,18 @@ public class Noticia{
 	}
 
 	public Integer getPuntuacio() {
-		return puntuacio;
-	}
-
-	public void setPuntuacio(Integer puntuacio) {
-		this.puntuacio = puntuacio;
+		return calcularPuntuacio();
 	}
 
 	public double getPreu() {
-		return preu;
+		return calcularPreuNoticia();
 	}
-
-	public void setPreu(double preu) {
-		this.preu = preu;
-	}
+	
+	abstract double calcularPreuNoticia();
+	
+	abstract Integer calcularPuntuacio();
+	
+	abstract void demanarInformacio();
+	
+	abstract void mostrarInformacio();
 }

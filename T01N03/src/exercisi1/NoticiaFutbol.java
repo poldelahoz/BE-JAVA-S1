@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class NoticiaFutbol extends Noticia implements NoticiaUtils{
+public class NoticiaFutbol extends Noticia{
 	
 	private String competicio;
 	private String club;
@@ -38,7 +38,7 @@ public class NoticiaFutbol extends Noticia implements NoticiaUtils{
 	}
 	
 	@Override
-	public void calcularPreuNoticia() {
+	public double calcularPreuNoticia() {
 		double preu = 300;
 		if (competicio.equals("Lliga de Campions"))
 			preu += 100;
@@ -46,11 +46,11 @@ public class NoticiaFutbol extends Noticia implements NoticiaUtils{
 			preu += 100;
 		if (jugador.equals("Ferran Torres") || jugador.equals("Benzema"))
 			preu += 50;
-		this.setPreu(preu);
+		return preu;
 	}
 
 	@Override
-	public void calcularPuntuacio() {
+	public Integer calcularPuntuacio() {
 		Integer puntuacio = 5;
 		if (competicio.equals("Lliga de Campions"))
 			puntuacio += 3;
@@ -60,17 +60,28 @@ public class NoticiaFutbol extends Noticia implements NoticiaUtils{
 			puntuacio += 1;
 		if (jugador.equals("Ferran Torres") || jugador.equals("Benzema"))
 			puntuacio += 1;
-		this.setPuntuacio(puntuacio);
+		return puntuacio;
 	}
 	
 	@Override
 	public void demanarInformacio() {
-		System.out.print("Informació de la notícia");
+		System.out.println("Introdueix la informació de la notícia:");
+		System.out.print("Titular: ");
+		this.setTitular(Main.scanner.nextLine());
 		System.out.print("Competició: ");
 		this.setCompeticio(Main.scanner.nextLine());
 		System.out.print("Club: ");
 		this.setClub(Main.scanner.nextLine());
 		System.out.print("Jugador: ");
 		this.setJugador(Main.scanner.nextLine());
+	}
+	
+	@Override
+	public void mostrarInformacio() {
+		System.out.print("Titular: " + this.getTitular() + " | ");
+		System.out.print("Text: " + this.getText() + " | ");
+		System.out.print("Competició: " + this.getCompeticio() + " | ");
+		System.out.print("Club: " + this.getClub() + " | ");
+		System.out.print("Jugador: " + this.getJugador());
 	}
 }

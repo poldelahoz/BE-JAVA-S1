@@ -20,7 +20,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		redaccio = new Redaccio(1500);
-		Menu menu = new Menu(options);
+		// per si vols inicialitzar amb algunes dades de prova
+		//InitializeData();
+		Menu menu = new Menu(options, Menu.MenuType.PRINCIPAL);
 		int option;
         boolean exit = false;
 		while (!exit){
@@ -36,13 +38,28 @@ public class Main {
                     case 6: MainMenuOptions.option6(); break;
                     case 7: MainMenuOptions.option7(); break;
                     case 8: System.out.println("Fins aviat!"); exit = true; break;
-                    default: System.out.println("Només números entre 1 i " + menu.getOptionsLength());
+                    default: System.err.println("Només números entre 1 i " + menu.getOptionsLength());
                 }
             }
             catch (NoSuchElementException ex){
-                System.out.println("Has d'introduir un número");
+                System.err.println("Has d'introduir un número");
                 scanner.next();
             }
         }
+	}
+	
+	private static  void InitializeData() {
+		Redactor r1 = new Redactor("Pol", "123");
+		Redactor r2 = new Redactor("Andrea", "456");
+		redaccio.afegirRedactor(r1);
+		redaccio.afegirRedactor(r2);
+		NoticiaFutbol n1 = new NoticiaFutbol("Noticia 1");
+		n1.setClub("Barça");
+		n1.setCompeticio("Lliga de Campions");
+		n1.setJugador("Ferran Torres");
+		NoticiaF1 n2 = new NoticiaF1("Noticia 2");
+		n2.setEscuderia("Ferrari");
+		r1.afegirNoticia(n1);
+		r2.afegirNoticia(n2);
 	}
 }

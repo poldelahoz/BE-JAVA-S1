@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class NoticiaF1 extends Noticia implements NoticiaUtils{
+public class NoticiaF1 extends Noticia{
 	
 	private String escuderia;
 	
@@ -20,25 +20,34 @@ public class NoticiaF1 extends Noticia implements NoticiaUtils{
 	}
 	
 	@Override
-	public void calcularPreuNoticia() {
+	public double calcularPreuNoticia() {
 		double preu = 100;
 		if (escuderia.equals("Ferrari") || escuderia.equals("Mercedes"))
 			preu += 50;
-		this.setPreu(preu);
+		return preu;
 	}
 	
 	@Override
-	public void calcularPuntuacio() {
+	public Integer calcularPuntuacio() {
 		Integer puntuacio = 4;
 		if (escuderia.equals("Ferrari") || escuderia.equals("Mercedes"))
 			puntuacio += 2;
-		this.setPuntuacio(puntuacio);
+		return puntuacio;
 	}
 	
 	@Override
 	public void demanarInformacio() {
-		System.out.print("Informació de la notícia");
+		System.out.println("Introdueix la informació de la notícia:");
+		System.out.print("Titular: ");
+		this.setTitular(Main.scanner.nextLine());
 		System.out.print("Escuderia: ");
 		this.setEscuderia(Main.scanner.nextLine());
+	}
+	
+	@Override
+	public void mostrarInformacio() {
+		System.out.print("Titular: " + this.getTitular() + " | ");
+		System.out.print("Text: " + this.getText() + " | ");
+		System.out.print("Escuderia: " + this.getEscuderia());
 	}
 }

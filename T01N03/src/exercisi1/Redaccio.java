@@ -1,11 +1,11 @@
 package exercisi1;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class Redaccio {
 	
-	private List<Redactor> redactors;
+	private ArrayList<Redactor> redactors = new ArrayList<Redactor>();
 	private static double sou;
 	
 	public Redaccio(double sou) {
@@ -15,21 +15,18 @@ public class Redaccio {
 	/**
 	 * @return the redactors
 	 */
-	public List<Redactor> getRedactors() {
+	public ArrayList<Redactor> getRedactors() {
 		return redactors;
 	}
 	
 	/**
 	 * @return the redactor with Dni/Nom in redactors or null
 	 */
-	public Redactor getRedactor(String DniNom) {
-		// filter 1
-		Predicate<Redactor> nameFilter = redactor -> DniNom.equals(redactor.getNom());
- 
-        // filter 2
+	public Redactor getRedactor(String DniNom) { 
+        // filter
         Predicate<Redactor> dniFilter = redactor -> DniNom.equals(redactor.getDNI());
         
-        return redactors.stream().filter(nameFilter.or(dniFilter)).findAny().orElse(null);
+        return redactors.stream().filter(dniFilter).findAny().orElse(null);
 	}
 	
 	/**
@@ -54,7 +51,7 @@ public class Redaccio {
 			redactors.add(redactor);
 			return true;
 		}catch(Exception e){
-			System.out.println("No s'ha pogut afegir el redactor: " + e.getMessage());
+			System.err.println("No s'ha pogut afegir el redactor: " + e.getMessage());
 			return false;
 		}
 	}

@@ -1,19 +1,17 @@
 package exercisi1;
 
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
 import java.util.NoSuchElementException;
 
 public class MainMenuOptions {
 	
 	private static final String[] options = {
-			"1.- Futbol",
-            "2.- Basquet",
-            "3.- Tenis",
-            "4.- Formula 1",
-            "5.- Motociclisme",
+			"1.- Notícia de Futbol",
+            "2.- Notícia de Basquet",
+            "3.- Notícia de Tenis",
+            "4.- Notícia de Formula 1",
+            "5.- Notícia de Motociclisme",
             "6.- Sortir",
 	};	
 	
@@ -29,50 +27,91 @@ public class MainMenuOptions {
 	}
 	
 	public static void option2() {
-		System.out.print("DNI o nom del redactor: ");
-		String DniNom = Main.scanner.nextLine();
-		Redactor redactor = Main.redaccio.getRedactor(DniNom);
-		if (redactor == null) {
-			System.out.println("El redactor amb DNI/Nom " + DniNom + " no existeix en aquesta redacció.");
-		}else {
-			System.out.println();
+		System.out.print("DNI del redactor: ");
+		String dni = Main.scanner.nextLine();
+		Redactor redactor = Main.redaccio.getRedactor(dni);
+		System.out.println();
+		if (redactor != null) {
 			Main.redaccio.borrarRedactor(redactor);
 			System.out.println("Redactor " + redactor.getNom() + " amb DNI " + redactor.getDNI() + " eliminat.");
+		}else {
+			System.err.println("El redactor amb DNI " + dni + " no existeix en aquesta redacció.");
 		}
 	}
 	
 	public static void option3() {
-		System.out.print("DNI o nom del redactor: ");
-		String DniNom = Main.scanner.nextLine();
-		Redactor redactor = Main.redaccio.getRedactor(DniNom);
-		if (redactor == null) {
-			System.out.println("El redactor amb DNI/Nom " + DniNom + " no existeix en aquesta redacció.");
+		System.out.print("DNI del redactor: ");
+		String dni = Main.scanner.nextLine();
+		Redactor redactor = Main.redaccio.getRedactor(dni);
+		System.out.println();
+		if (redactor != null) {
+			Menu menu = new Menu(options, Menu.MenuType.TIPUS_DE_NOTICIA);
+			int option;
+	        boolean exit = false;
+			while (!exit){
+				menu.printMenu();
+	            try {
+	            	option = Integer.parseInt(Main.scanner.nextLine());
+	                switch (option){
+	                    case 1: 
+	                    	NoticiaFutbol nFutbol = new NoticiaFutbol();
+	                    	nFutbol.demanarInformacio();
+	                    	redactor.afegirNoticia(nFutbol);
+	                    	exit = true; 
+	                    	break;
+	                    case 2:
+	                    	NoticiaBasquet nBasquet = new NoticiaBasquet();
+	                    	nBasquet.demanarInformacio();
+	                    	redactor.afegirNoticia(nBasquet);
+	                    	exit = true; 
+	                    	break;
+	                    case 3:
+	                    	NoticiaTenis nTenis = new NoticiaTenis();
+	                    	nTenis.demanarInformacio();
+	                    	redactor.afegirNoticia(nTenis);
+	                    	exit = true; 
+	                    	break;
+	                    case 4: 
+	                    	NoticiaF1 nF1 = new NoticiaF1();
+	                    	nF1.demanarInformacio();
+	                    	redactor.afegirNoticia(nF1);
+	                    	exit = true; 
+	                    	break;
+	                    case 5: 
+	                    	NoticiaMotociclisme nMotociclisme = new NoticiaMotociclisme();
+	                    	nMotociclisme.demanarInformacio();
+	                    	redactor.afegirNoticia(nMotociclisme);
+	                    	exit = true; 
+	                    	break;
+	                    case 6: exit = true; break;
+	                    default: System.err.println("Només números entre 1 i " + menu.getOptionsLength());
+	                }
+	            }
+	            catch (NoSuchElementException ex){
+	                System.err.println("Has d'introduir un número");
+	                Main.scanner.next();
+	            }
+	        }
 		}else {
-			System.out.print("Informació de la notícia");
-			System.out.print("Titular: ");
-			Noticia noticia = new Noticia(Main.scanner.nextLine());
-			redactor.afegirNoticia(noticia);
+			System.err.println("El redactor amb DNI/Nom " + dni + " no existeix en aquesta redacció.");
 		}
 	}
 	
 	public static void option4() {
-		System.out.print("Nom del redactor: ");
-		String nom = Main.scanner.nextLine();
-		System.out.print("Titutal de la notícia: ");
-		String titular = Main.scanner.nextLine();
-		Redactor redactor = Main.redaccio.getRedactor(nom);
-		
-		if (redactor == null) {
-			System.out.println("El redactor amb nom " + nom + " no existeix en aquesta redacció.");
-		}else {
-			Noticia noticia = redactor.getNoticia(titular);
-			if (noticia == null) {
-				System.out.println("La notícia '" + titular + "' no existeix pel redactor " + nom);
+		System.out.print("DNI del redactor: ");
+		String dni = Main.scanner.nextLine();
+		Redactor redactor = Main.redaccio.getRedactor(dni);
+		if (redactor != null) {
+			System.out.print("Titular de la notícia: ");
+			String titular = Main.scanner.nextLine();
+			System.out.println();
+			if (redactor.borrarNoticia(titular)) {
+				System.out.println("Notícia '" + titular + "' eliminada.");
 			}else {
-				System.out.println();
-				redactor.borrarNoticia(noticia);
-				System.out.println("Notícia '" + noticia.getTitular() + "' eliminada.");
+				System.err.println("La notícia '" + titular + "' no existeix pel redactor " + redactor.getNom() + " amb DNI " + redactor.getDNI());
 			}
+		}else {
+			System.err.println("El redactor amb DNI " + dni + " no existeix en aquesta redacció.");
 		}
 	}
 	
@@ -82,123 +121,55 @@ public class MainMenuOptions {
 		ListIterator<Redactor> iterator = redactors.listIterator();
 		while(iterator.hasNext()) {
 			redactor = iterator.next();
-			System.out.println("Redactor " + redactor.getNom() + " amb DNI " + redactor.getDNI());
-			System.out.println("Notícies:");
-			redactor.getNoticies().forEach(noticia -> System.out.println("Titular: " + noticia.getTitular() + "\nText: " + noticia.getText()));
+			System.out.println("--------------------------- REDACTOR ---------------------------");
+			System.out.println("Nom: " + redactor.getNom());
+			System.out.println("DNI: " + redactor.getDNI());
+			System.out.println("NOTICIES:");
+			redactor.getNoticies().forEach(noticia -> {
+					noticia.mostrarInformacio();
+					System.out.println();
+				}
+			);
 			System.out.println();
 		}
-		
 	}
 	
 	public static void option6() {
-		Menu menu = new Menu(options);
-		int option;
-        boolean exit = false;
-		while (!exit){
-			menu.printMenu();
-            try {
-            	option = Integer.parseInt(Main.scanner.nextLine());
-                switch (option){
-                    case 1: 
-                    	NoticiaFutbol nFutbol = new NoticiaFutbol();
-                    	nFutbol.demanarInformacio();
-                    	nFutbol.calcularPuntuacio();
-                		System.out.println("La puntuació d'aquesta notícia es de " + nFutbol.getPuntuacio() + " punts.");
-                    	exit = true; 
-                    	break;
-                    case 2:
-                    	NoticiaBasquet nBasquet = new NoticiaBasquet();
-                    	nBasquet.demanarInformacio();
-                    	nBasquet.calcularPuntuacio();
-                		System.out.println("La puntuació d'aquesta notícia es de " + nBasquet.getPuntuacio() + " punts.");
-                    	exit = true; 
-                    	break;
-                    case 3:
-                    	NoticiaTenis nTenis = new NoticiaTenis();
-                    	nTenis.demanarInformacio();
-                    	nTenis.calcularPuntuacio();
-                		System.out.println("La puntuació d'aquesta notícia es de " + nTenis.getPuntuacio() + " punts.");
-                    	exit = true; 
-                    	break;
-                    case 4: 
-                    	NoticiaF1 nF1 = new NoticiaF1();
-                    	nF1.demanarInformacio();
-                    	nF1.calcularPuntuacio();
-                		System.out.println("La puntuació d'aquesta notícia es de " + nF1.getPuntuacio() + " punts.");
-                    	exit = true; 
-                    	break;
-                    case 5: 
-                    	NoticiaMotociclisme nMotociclisme = new NoticiaMotociclisme();
-                    	nMotociclisme.demanarInformacio();
-                    	nMotociclisme.calcularPuntuacio();
-                		System.out.println("La puntuació d'aquesta notícia es de " + nMotociclisme.getPuntuacio() + " punts.");
-                    	exit = true; 
-                    	break;
-                    case 6: exit = true; break;
-                    default: System.out.println("Només números entre 1 i " + menu.getOptionsLength());
-                }
-            }
-            catch (NoSuchElementException ex){
-                System.out.println("Has d'introduir un número");
-                Main.scanner.next();
-            }
-        }
+		System.out.print("DNI del redactor: ");
+		String dni = Main.scanner.nextLine();
+		Redactor redactor = Main.redaccio.getRedactor(dni);
+		if (redactor != null) {
+			System.out.print("Titular de la notícia: ");
+			String titular = Main.scanner.nextLine();
+			System.out.println();
+			Noticia noticia = redactor.getNoticia(titular);
+			if (noticia != null) {
+				System.out.println("Puntuació de la notícia: " + noticia.getPuntuacio() + " punts");
+			}else {
+				System.err.println("El redactor amb DNI " + dni + " no té aquesta notícia.");
+			}
+		}else {
+			System.err.println("El redactor amb DNI " + dni + " no existeix en aquesta redacció.");
+		}
 	}
 	
 	public static void option7() {
-		Locale locale = Locale.getDefault();
-		NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
-		Menu menu = new Menu(options);
-		int option;
-        boolean exit = false;
-		while (!exit){
-			menu.printMenu();
-            try {
-            	option = Integer.parseInt(Main.scanner.nextLine());
-                switch (option){
-                    case 1: 
-                    	NoticiaFutbol nFutbol = new NoticiaFutbol();
-                    	nFutbol.demanarInformacio();
-                    	nFutbol.calcularPreuNoticia();
-                		System.out.println("El preu d'aquesta notícia es de " + numberFormat.format(nFutbol.getPuntuacio()));
-                    	exit = true; 
-                    	break;
-                    case 2:
-                    	NoticiaBasquet nBasquet = new NoticiaBasquet();
-                    	nBasquet.demanarInformacio();
-                    	nBasquet.calcularPreuNoticia();
-                    	System.out.println("El preu d'aquesta notícia es de " + numberFormat.format(nBasquet.getPuntuacio()));
-                    	exit = true; 
-                    	break;
-                    case 3:
-                    	NoticiaTenis nTenis = new NoticiaTenis();
-                    	nTenis.demanarInformacio();
-                    	nTenis.calcularPreuNoticia();
-                    	System.out.println("El preu d'aquesta notícia es de " + numberFormat.format(nTenis.getPuntuacio()));
-                    	exit = true; 
-                    	break;
-                    case 4: 
-                    	NoticiaF1 nF1 = new NoticiaF1();
-                    	nF1.demanarInformacio();
-                    	nF1.calcularPreuNoticia();
-                    	System.out.println("El preu d'aquesta notícia es de " + numberFormat.format(nF1.getPuntuacio()));
-                    	exit = true; 
-                    	break;
-                    case 5: 
-                    	NoticiaMotociclisme nMotociclisme = new NoticiaMotociclisme();
-                    	nMotociclisme.demanarInformacio();
-                    	nMotociclisme.calcularPreuNoticia();
-                    	System.out.println("El preu d'aquesta notícia es de " + numberFormat.format(nMotociclisme.getPuntuacio()));
-                    	exit = true; 
-                    	break;
-                    case 6: exit = true; break;
-                    default: System.out.println("Només números entre 1 i " + menu.getOptionsLength());
-                }
-            }
-            catch (NoSuchElementException ex){
-                System.out.println("Has d'introduir un número");
-                Main.scanner.next();
-            }
-        }
+		System.out.print("DNI del redactor: ");
+		String dni = Main.scanner.nextLine();
+		Redactor redactor = Main.redaccio.getRedactor(dni);
+		if (redactor != null) {
+			System.out.print("Titular de la notícia: ");
+			String titular = Main.scanner.nextLine();
+			System.out.println();
+			Noticia noticia = redactor.getNoticia(titular);
+			if (noticia != null) {
+				System.out.printf("Preu de la notícia: %,.2f €", noticia.getPreu());
+				System.out.println();
+			}else {
+				System.err.println("El redactor amb DNI " + dni + " no té aquesta notícia.");
+			}
+		}else {
+			System.err.println("El redactor amb DNI " + dni + " no existeix en aquesta redacció.");
+		}
 	}
 }

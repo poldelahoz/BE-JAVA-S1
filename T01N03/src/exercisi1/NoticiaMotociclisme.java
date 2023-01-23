@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class NoticiaMotociclisme extends Noticia implements NoticiaUtils{
+public class NoticiaMotociclisme extends Noticia{
 	
 	private String equip;
 	
@@ -20,25 +20,34 @@ public class NoticiaMotociclisme extends Noticia implements NoticiaUtils{
 	}
 	
 	@Override
-	public void calcularPreuNoticia() {
+	public double calcularPreuNoticia() {
 		double preu = 100;
 		if (equip.equals("Honda") || equip.equals("Yamaha"))
 			preu += 50;
-		this.setPreu(preu);
+		return preu;
 	}	
 	
 	@Override
-	public void calcularPuntuacio() {
+	public Integer calcularPuntuacio() {
 		Integer puntuacio = 3;
 		if (equip.equals("Honda") || equip.equals("Yamaha"))
 			puntuacio += 3;
-		this.setPuntuacio(puntuacio);
+		return puntuacio;
 	}
 	
 	@Override
 	public void demanarInformacio() {
-		System.out.print("Informació de la notícia");
+		System.out.println("Introdueix la informació de la notícia:");
+		System.out.print("Titular: ");
+		this.setTitular(Main.scanner.nextLine());
 		System.out.print("Equip: ");
 		this.setEquip(Main.scanner.nextLine());
+	}
+	
+	@Override
+	public void mostrarInformacio() {
+		System.out.print("Titular: " + this.getTitular() + " | ");
+		System.out.print("Text: " + this.getText() + " | ");
+		System.out.print("Equip: " + this.getEquip());
 	}
 }
