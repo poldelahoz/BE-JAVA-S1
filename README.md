@@ -15,14 +15,24 @@ Repositori organitzat mitjaçant GitFlow.
 #### **Tasques finalitzades:**
 * [T01N01](../master/T01N01)
 * [T01N02](../master/T01N02)
+* [T01N03](../master/T01N03)
+
 * [T02N01](../master/T02N01)
 * [T02N02](../master/T02N02)
 * [T02N03](../master/T02N03)
+
 * [T03N01](../master/T03N01)
+
 * [T04N01](../master/T04N01)
 * [T04N02](../master/T04N02)
+
 * [T05N01](../master/T05N01)
 * [T05N02](../master/T05N02)
+* [T05N03](../master/T05N03)
+
 * [T06N01](../master/T06N01)
+
 * [T07N01](../master/T07N01)
+* [T07N02](../master/T07N02)
+
 * [T08N01](../master/T08N01)
