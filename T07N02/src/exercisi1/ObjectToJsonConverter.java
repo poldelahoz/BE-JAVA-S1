@@ -11,6 +11,7 @@ public class ObjectToJsonConverter {
             String data = getJsonString(object);
             String savePath = getSavePath(object);
             FileUtils.saveToFile(data, savePath, "json");
+            System.out.println("Objecte serialitzat i guardat a fitxer JSON a " + savePath);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
