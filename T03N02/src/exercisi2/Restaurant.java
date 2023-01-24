@@ -1,4 +1,4 @@
-package exercisi1;
+package exercisi2;
 
 import java.util.Objects;
 
@@ -55,5 +55,4 @@ public class Restaurant{
 	public int hashCode() {
 		return Objects.hash(nom, puntuacio);
 	}
-	
 }
