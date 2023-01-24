@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class Main {
 
 	public static void main(String[] args) {
-		String[] array = {"Anna", "Pol", "Andrea", "Martí"};
+		String[] array = {"Andrea", "Pol", "ara", "Martí", "Ana"};
 		List<String> list = Arrays.stream(array).collect(Collectors.toList());
 		contenenA(list).forEach(System.out::println);		
 	}
@@ -15,6 +15,7 @@ public class Main {
 	private static List<String> contenenA(List<String> list){
 		return list.stream()
 					.filter(i -> i.startsWith("A"))
+					.filter(i -> i.length() == 3)
 					.collect(Collectors.toList());
 	}
 }
