@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Pol de la Hoz/Documents/BarcelonaActiva/Sprints/S01-DelahozGaigPol/T03N03/opencsv-5.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pol de la Hoz/Documents/BarcelonaActiva/Sprints/S01-DelahozGaigPol/T03N03/commons-lang3-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pol de la Hoz/Documents/BarcelonaActiva/Sprints/S01-DelahozGaigPol/T03N03/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pol de la Hoz/Documents/BarcelonaActiva/Sprints/S01-DelahozGaigPol/T03N03/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pol de la Hoz/Documents/BarcelonaActiva/Sprints/S01-DelahozGaigPol/T03N03/commons-logging-1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
