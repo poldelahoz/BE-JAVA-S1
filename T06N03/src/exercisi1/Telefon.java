@@ -1,5 +1,5 @@
 package exercisi1;
 
-public interface Telefon {
+public interface Telefon<T> {
 	void trucar();
 }
