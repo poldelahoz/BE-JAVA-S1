@@ -2,15 +2,15 @@ package exercisi1;
 
 public class Generica {
 	
-	public static <T> void Metode1(Telefon<T> telefon){
-		telefon.trucar();
+	public static <T extends Telefon> void Metode1(T t){
+		t.trucar();
 		// No pot cridar al mètode ferFotos() de la classe Smartphone 
-		// telefon.ferFotos();
+		// t.ferFotos();
 	}
 	
-	public static <T> void Metode2(Smartphone<? extends Telefon<T>> smartphone){
-		smartphone.trucar();
-		smartphone.ferFotos();
+	public static <T extends Smartphone> void Metode2(T t){
+		t.trucar();
+		t.ferFotos();
 	}
 
 }

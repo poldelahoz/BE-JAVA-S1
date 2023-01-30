@@ -1,6 +1,6 @@
 package exercisi1;
 
-public class Smartphone<T> implements Telefon<T>{
+public class Smartphone implements Telefon{
 
 	@Override
 	public void trucar() {
