@@ -29,6 +29,7 @@ Repositori organitzat mitjaçant GitFlow.
 * [T05N03](../master/T05N03)
 * [T06N01](../master/T06N01)
 * [T06N02](../master/T06N02)
+* [T06N03](../master/T06N03)
 * [T07N01](../master/T07N01)
 * [T07N02](../master/T07N02)
 * [T07N03](../master/T07N03)
